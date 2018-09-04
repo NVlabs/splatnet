@@ -10,13 +10,7 @@ Licensed under the CC BY-NC-SA 4.0 license (https://creativecommons.org/licenses
 [arXiv](https://arxiv.org/abs/1802.08275)
 ```
 @inproceedings{su18splatnet,
-  author    = {Hang Su and 
-               Varun Jampani and 
-               Deqing Sun and 
-               Subhransu Maji and 
-               Evangelos Kalogerakis and 
-               Ming-Hsuan Yang and 
-               Jan Kautz},
+  author={Su, Hang and Jampani, Varun and Sun, Deqing and Maji, Subhransu and Kalogerakis, Evangelos and Yang, Ming-Hsuan and Kautz, Jan},
   title     = {{SPLATN}et: Sparse Lattice Networks for Point Cloud Processing},
   booktitle = {Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition},
   pages     = {2530--2539},
