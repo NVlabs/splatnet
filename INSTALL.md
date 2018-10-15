@@ -3,7 +3,7 @@ Step-by-step installation instructions for Ubuntu 16.04.
         
 * Make sure CUDA and cuDNN are installed
             
-    We use CUDA 8 and cuDNN 6. But Caffe typically supports a wide range of CUDA/cuDNN versions. 
+    We tested on CUDA8/cuDNN6 and CUDA9/cuDNN7. But Caffe typically supports a wide range of CUDA/cuDNN versions. 
 
 * Install system-wide dependencies
     ```bash
@@ -30,15 +30,6 @@ Step-by-step installation instructions for Ubuntu 16.04.
         protobuf-compiler
     ```
 
-* Install NCCL
-    ```bash
-    git clone https://github.com/NVIDIA/nccl.git
-    cd nccl
-    sudo make -j install
-    cd ..
-    sudo rm -rf nccl
-    ```
-
 * Install conda and additional packages
     ```bash
     wget --quiet https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh
@@ -62,7 +53,7 @@ Step-by-step installation instructions for Ubuntu 16.04.
     rm -rf caffe-patch
     source activate caffe
     mkdir build && cd build
-    cmake -DUSE_CUDNN=1 -DUSE_NCCL=1 -Dpython_version=3 ..
+    cmake -DUSE_CUDNN=1 -Dpython_version=3 ..
     make -j$(nproc)
     cd $CAFFE_ROOT/python
     sed -i -e "s/python-dateutil>=1.4,<2/python-dateutil>=2.0/g" requirements.txt
@@ -73,14 +64,18 @@ Step-by-step installation instructions for Ubuntu 16.04.
     export PYCAFFE_ROOT=$(pwd)/python
     export PYTHONPATH=\$PYCAFFE_ROOT:\$PYTHONPATH
     export PATH=\$CAFFE_ROOT/build/tools:\$PYCAFFE_ROOT:\$PATH
-    " >> ~/.bashrc  // this puts path in your .bashrc file -- it will take effect at next login
+    " >> ~/.bashrc  # this puts path in your .bashrc file
+    source ~/.bashrc
     sudo /bin/bash -c 'echo "$(pwd)/build/lib" >> /etc/ld.so.conf.d/caffe.conf'
     sudo ldconfig
     ```
 
 * Ready to use!
     ```bash
-    # enter conda environment
-    # you will need to use a new terminal for the first time
+    # enter conda environment if you are not already in one
     source activate caffe
     ```
+
+Note that for multi-GPU usage (not used or tested in our experiments and demos) you will also need NCCL:
+* Before installing Caffe, install NCCL following [official instructions](https://github.com/NVIDIA/nccl). 
+* Add `-DUSE_NCCL=1` flag for cmake. 

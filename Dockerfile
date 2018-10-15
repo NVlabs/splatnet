@@ -27,8 +27,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 RUN wget --quiet https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda.sh && \
     /bin/bash ~/miniconda.sh -b -p /opt/conda && rm ~/miniconda.sh
 
-RUN git clone https://github.com/NVIDIA/nccl.git && cd nccl && make -j install && cd .. && rm -rf nccl
-
 ENV CAFFE_ROOT=/opt/caffe
 WORKDIR $CAFFE_ROOT
 
@@ -48,7 +46,7 @@ RUN git clone -b ${CLONE_TAG} --depth 1 https://github.com/BVLC/caffe.git . && \
     rm -rf caffe-patch
 
 RUN /bin/bash -c "source /opt/conda/bin/activate caffe && mkdir build && cd build && \
-    cmake -DUSE_CUDNN=1 -DUSE_NCCL=1 -Dpython_version=3 .. && \
+    cmake -DUSE_CUDNN=1 -Dpython_version=3 .. && \
     make -j$(nproc)"
 
 WORKDIR $CAFFE_ROOT/python

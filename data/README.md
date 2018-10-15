@@ -2,7 +2,8 @@
 
 ### Ruemonge428
 1. Request data access from the [VarCity 3D Semantic Segmentation Challenge](https://varcity.ethz.ch/3dchallenge/) website. 
-2. Download and place the folder `ruemonge428` under `data/`. For the 3D segmentation task, make sure these 3 files are present:
+2. Download and place the folder [ruemonge428](https://bitbucket.org/hayko/varcity3dchallenge/src/master/data/ruemonge428/) 
+under `data/`. For the 3D segmentation task, make sure these 3 files are present:
     * `pcl.ply`
     * `pcl_gt_train.ply`
     * `pcl_gt_test.ply`
