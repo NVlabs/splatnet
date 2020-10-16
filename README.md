@@ -29,7 +29,8 @@ Licensed under the CC BY-NC-SA 4.0 license (https://creativecommons.org/licenses
         ```bash
         docker pull suhangpro/caffe:bpcn
         ``` 
-        You can also build your own image with this [Dockerfile](Dockerfile). 
+        You can also build this image with the [Dockerfile](Dockerfile). 
+    * The docker image provided above uses CUDA 8, which is no longer supported if you have Volta GPUs (e.g. Titan V), Turing GPUs (e.g. RTX 2080), or newer ones. Adapting the Dockerfile to more recent GPUs should be straightforward—check out the [example](https://hub.docker.com/repository/docker/zyzwhdx/splatnet/general) supporting up to Turing, courtesy of @zyzwhdx.
 
 2. Include the project to your python path so imports can be found, e.g. 
     ```bash
@@ -67,9 +68,6 @@ Licensed under the CC BY-NC-SA 4.0 license (https://creativecommons.org/licenses
             cd exp/shapenet3d
             ./train_test.sh
             ```
-    * Joint 2D-3D experiments
-    
-        (coming soon)
 
 ### References 
 We make extensive use of bilateralNN, which is proposed in these publications:
